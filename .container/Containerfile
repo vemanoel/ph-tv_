@@ -33,7 +33,7 @@ rm -rf cmdline-tools.zip
 rm -rf /var/lib/apt/lists/*
 EOF
 
-RUN yes | sdkmanager --licenses && sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0" "ndk;27.0.12077973"
+RUN yes | sdkmanager --licenses && sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0" "ndk;27.1.12297006"
 
 ENV NODE_VERSION=26.13.0
 ENV NVM_VERSION=0.40.0
