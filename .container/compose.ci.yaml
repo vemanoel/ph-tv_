@@ -1,5 +1,5 @@
 services:
-  dev:
+  development:
     image: localhost/raccoon-dev
     build:
       context: ..
