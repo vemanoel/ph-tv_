@@ -23,11 +23,6 @@ apt-get install --yes --no-install-recommends ncurses-bin
 apt-get install --yes --no-install-recommends curl
 apt-get install --yes --no-install-recommends unzip
 
-RUN <<EOF
-set -e
-
-apt-get update --yes
-
 apt-get install --yes --no-install-recommends openjdk-${JAVA_VERSION}-jdk
 
 mkdir -p ${ANDROID_HOME}/cmdline-tools
