@@ -11,4 +11,4 @@ shell:
 	@podman compose exec android bash
 
 install:
-	@npm install --prefix application
+	@podman compose run --rm android npm install --prefix application
