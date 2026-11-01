@@ -1,0 +1,45 @@
+name: release
+on:
+  workflow_dispatch: 
+    inputs:
+      version:
+        type: string
+        required: true
+        description: "version"
+  
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    permissions:
+      contents: write
+
+    env:
+      COMPOSE_FILE: .container/compose.ci.yaml
+      PODMAN_COMPOSE_PROVIDER: /usr/bin/podman-compose
+  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+  
+      - name: Install podman
+        run: sudo apt-get install --yes podman=4.9.3+ds1-1ubuntu0.2
+      
+      - name: Install podman-compose
+        run: sudo apt-get install --yes podman-compose=1.0.6-1
+
+      - name: Build image
+        run: podman compose build dev
+
+      - name: Build artifacts
+        run: make build
+
+      - uses: softprops/action-gh-release@v3.0.3
+        with:
+          files: build/*
+          generate_release_notes: true
+          tag_name: v${{ inputs.version }}
+  

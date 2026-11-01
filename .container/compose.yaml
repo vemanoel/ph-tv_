@@ -1,0 +1,21 @@
+services:
+  dev:
+    image: localhost/raccoon-dev
+    deploy:
+      resources:
+        limits:
+          cpus: 3.0
+          memory: 8G
+    privileged: true
+    ports:
+      - "8081:80"
+    build:
+      context: ..
+      dockerfile: .container/Containerfile
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace:Z
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+    

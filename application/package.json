@@ -1,0 +1,25 @@
+{
+	"name": "TVTest",
+	"version": "0.0.1",
+	"scripts": {
+		"android": "react-native run-android",
+		"start": "react-native start"
+	},
+	"dependencies": {
+		"react": "19.3.0",
+		"react-native": "npm:react-native-tvos@0.88.0-0",
+		"react-native-safe-area-context": "5.11.0"
+	},
+	"overrides": {
+		"react-native": "npm:react-native-tvos@0.88.0-0"
+	},
+	"devDependencies": {
+		"@babel/core": "8.0.10",
+		"@babel/preset-env": "8.0.7",
+		"@babel/runtime": "8.0.10",
+		"@react-native-community/cli": "20.2.0",
+		"@react-native-community/cli-platform-android": "20.2.0",
+		"@react-native/babel-preset": "0.88.0",
+		"@react-native/metro-config": "0.88.0"
+	}
+}
