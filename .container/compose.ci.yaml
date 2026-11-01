@@ -1,6 +1,6 @@
 services:
   android:
-    image: localhost/raccoon-dev
+    image: localhost/raccoon-android
     build:
       context: ..
       dockerfile: .container/Containerfile
