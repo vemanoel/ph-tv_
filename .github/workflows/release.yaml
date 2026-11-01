@@ -35,7 +35,11 @@ jobs:
         run: podman compose build dev
 
       - name: Build artifacts
-        run: make build
+        run: |
+          make up
+          make shell
+          make install
+          make build
 
       - uses: softprops/action-gh-release@v3.0.3
         with:
