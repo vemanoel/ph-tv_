@@ -15,7 +15,8 @@ EOF
 ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 ENV ANDROID_HOME=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
-ENV ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/27.0.12077973
+ENV ANDROID_NDK_VERSION=27.1.12297006
+ENV ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/${ANDROID_NDK_VERSION}
 ENV PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools
 RUN <<EOF
 set -e
@@ -33,7 +34,7 @@ rm -rf cmdline-tools.zip
 rm -rf /var/lib/apt/lists/*
 EOF
 
-RUN yes | sdkmanager --licenses && sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0" "ndk;27.1.12297006"
+RUN yes | sdkmanager --licenses && sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0" "ndk;${ANDROID_NDK_VERSION}"
 
 ENV NODE_VERSION=26.13.0
 ENV NVM_VERSION=0.40.0
