@@ -11,5 +11,5 @@
 ```bash
 cd ph-tv
 make up
-make in
+make install
 ```
