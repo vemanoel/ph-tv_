@@ -14,5 +14,5 @@ down:
 shell:
 	@ podman compose exec dev bash
 
-in:
+install:
 	@ podman compose run --rm dev npm install --prefix application
