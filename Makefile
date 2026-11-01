@@ -1,18 +1,14 @@
 export PODMAN_COMPOSE_PROVIDER ?= $(shell command -v podman-compose)
 export COMPOSE_FILE ?= .container/compose.dev.yaml
 
-.ONESHELL:
-
-.PHONY: up down shell
-
 up:
-	@ podman compose up --build --detach
+	@podman compose up --build --detach
 
 down:
-	@ podman compose down
+	@podman compose down
 
 shell:
-	@ podman compose exec dev bash
+	@podman compose exec android bash
 
 install:
-	@ podman compose run --rm dev npm install --prefix application
+	@podman compose run --rm android npm install --prefix application
