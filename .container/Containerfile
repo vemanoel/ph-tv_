@@ -9,7 +9,8 @@ ENV JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64
 ENV ANDROID_HOME=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/${ANDROID_NDK_VERSION}
-ENV PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools
+ENV PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin
+ENV PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 ENV NODE_VERSION=26.13.0
 ENV NVM_VERSION=0.40.0
