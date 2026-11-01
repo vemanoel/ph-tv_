@@ -37,8 +37,8 @@ rm -rf ${ZIP_FILE}
 yes | sdkmanager --licenses
 sdkmanager "platform-tools" \
   "ndk;${ANDROID_NDK_VERSION}" \
-  "platforms;android-${ANDROID_PLATFORM_VERSION}" \
-  "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"
+  "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" \
+  "platforms;android-${ANDROID_PLATFORM_VERSION}"
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash
 . ${NVM_DIR}/nvm.sh
