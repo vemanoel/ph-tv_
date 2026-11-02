@@ -14,5 +14,8 @@
 		"@react-native-community/cli-platform-android": "20.2.0",
 		"@react-native/babel-preset": "0.88.0",
 		"@react-native/metro-config": "0.88.0"
+		"prettier": "3.9.10",
+		"typescript": "7.0.2",
+		"typescript-language-server": "6.0.3"
 	}
 }
