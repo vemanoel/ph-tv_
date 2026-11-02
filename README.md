@@ -1,3 +1,7 @@
+# pornhub-tv
+
+An unofficial, open-source client that brings Pornhub to Android TV and Amazon Fire TV devices.
+
 ## Development
 
 ### Prerequisites
