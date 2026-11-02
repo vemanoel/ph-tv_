@@ -13,34 +13,34 @@ shell:
 	@podman compose exec android bash
 
 pair:
-	@podman compose exec android bash -e <<'EOF'
+	@podman compose exec -T android bash -e <<'EOF'
 	read -rp "Address: " address
 	read -rp "Code: " pair_code
 	adb pair $${address} $${pair_code}
 	EOF
 
 connect:
-	@podman compose exec android bash -e <<'EOF'
+	@podman compose exec -T android bash -e <<'EOF'
   	read -rp "Address: " address
 	adb connect $${address}
 	EOF
 
 start:
-	@podman compose exec android bash -e <<'EOF'
+	@podman compose exec -T android bash -e <<'EOF'
 	cd application
 	npm install
 	npm exec react-native start
 	EOF
 
 run:
-	@podman compose exec android bash -e <<'EOF'
+	@podman compose exec -T android bash -e <<'EOF'
 	cd application
 	npm install
 	npm exec react-native run-android
 	EOF
 
 build:
-	@podman compose exec android bash -e <<'EOF'
+	@podman compose exec -T android bash -e <<'EOF'
 	cd /workspace/application
 	npm install
 	cd android
