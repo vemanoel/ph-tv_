@@ -1,4 +1,4 @@
-package com.tvtest
+package com.pornhubtv
 
 import android.app.Application
 import com.facebook.react.PackageList
