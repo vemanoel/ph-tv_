@@ -50,4 +50,4 @@ build:
 	./gradlew assembleRelease --no-daemon
 	out_dir=../../build
 	mkdir -p ${out_dir}
-	mv -f app/build/outputs/apk/release/app-release.apk ${out_dir}/raccoon.apk
+	mv -f app/build/outputs/apk/release/*.apk ${out_dir}
