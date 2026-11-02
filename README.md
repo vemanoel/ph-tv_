@@ -15,8 +15,8 @@
    the Enter button on your remote, a prompt will appear asking: **"Allow wireless debugging  
    on this network?"**, check the box **"Always allow on this network"**, select **Allow** and press  
    the Enter button on your remote
-6. Select **Settings** > **My Fire TV** > **About** > **Network** to find your Fire TV's IP Address
-7. Open a terminal in the project root directory and run:
+6. Select **Settings** > **My Fire TV** > **About** > **Network** and find your Fire TV's IP Address
+7. On your computer, open a terminal in the project root directory and run:
     ```bash
     just up
     just connect <firetv-ip-address>
