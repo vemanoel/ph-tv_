@@ -5,7 +5,7 @@ export PODMAN_COMPOSE_PROVIDER := env_var_or_default(
 
 export COMPOSE_FILE := env_var_or_default(
     "COMPOSE_FILE",
-    ".container/compose.dev.yaml"
+    "compose.yaml"
 )
 
 up:
