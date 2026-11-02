@@ -1,4 +1,4 @@
-package com.tvtest
+package com.pornhubtv
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
@@ -6,7 +6,7 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnable
 import com.facebook.react.defaults.DefaultReactActivityDelegate
 
 class MainActivity : ReactActivity() {
-  override fun getMainComponentName(): String = "TVTest"
+  override fun getMainComponentName(): String = "PornHubTV"
   override fun createReactActivityDelegate(): ReactActivityDelegate =
       DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
 }
