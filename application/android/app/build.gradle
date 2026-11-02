@@ -15,7 +15,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.tvtest"
+    namespace "com.pornhubtv"
     splits {
         abi {
             enable true
