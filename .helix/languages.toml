@@ -11,9 +11,23 @@ args = [
 ]
 
 [[language]]
+name = "json"
+auto-format = true
+formatter = { command = "podman", args = [
+    "compose",
+    "--file",
+    ".container/compose.dev.yaml",
+    "exec",
+    "-T",
+    "android",
+    "prettier",
+    "--use-tabs",
+] }
+
+[[language]]
 name = "jsx"
 auto-format = true
-language-servers = [ "typescript-language-server" ]
+language-servers = ["typescript-language-server" ]
 formatter = { command = "podman", args = [
     "compose",
     "--file",
@@ -24,13 +38,7 @@ formatter = { command = "podman", args = [
     "prettier",
     "--single-quote",
     "--jsx-single-quote",
-    "--trailing-comma",
-    "all",
-    "--tab-width",
-    "4",
     "--use-tabs",
-    "--arrow-parens",
-    "avoid",
 ] }
 
 [[language]]
@@ -46,11 +54,5 @@ formatter = { command = "podman", args = [
     "android",
     "prettier",
     "--single-quote",
-    "--trailing-comma",
-    "all",
-    "--tab-width",
-    "4",
     "--use-tabs",
-    "--arrow-parens",
-    "avoid",
 ] }
