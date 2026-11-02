@@ -31,13 +31,9 @@ jobs:
       - name: Install podman-compose
         run: sudo apt-get install --yes podman-compose=1.0.6-1
 
-      - name: Build image
-        run: podman compose build dev
-
       - name: Build artifacts
         run: |
           make up
-          make shell
           make install
           make build
 
