@@ -6,7 +6,7 @@ args = ["compose", "--file", ".container/compose.dev.yaml", "exec", "android", "
 name = "javascript"
 auto-format = true
 language-servers = ["gopls"]
-formatter = { command = "podman", args = ["compose", "--file", ".container/compose.dev.yaml", "exec", "android", "prettier"] }
+formatter = { command = "podman", args = ["compose", "--file", ".container/compose.dev.yaml", "exec", "android", "prettier", "--single-quote", "--trailing-comma", "all", "--arrow-parens", "always"] }
 
 [[language]]
 name = "gomod"
