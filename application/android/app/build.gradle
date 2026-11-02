@@ -25,7 +25,7 @@ android {
         }
     }
     defaultConfig {
-        applicationId "com.pornhub-tv"
+        applicationId "com.pornhubtv"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
