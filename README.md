@@ -1,4 +1,4 @@
-y# pornhub-tv
+# pornhub-tv
 
 An unofficial, open-source client that brings Pornhub to Amazon Fire TV devices.
 
