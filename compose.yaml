@@ -7,6 +7,6 @@ services:
       dockerfile: Containerfile
     working_dir: /workspace
     volumes:
-      - ..:/workspace:Z
+      - .:/workspace:Z
     command: sleep infinity
   
