@@ -9,8 +9,8 @@
 ## Environment setup
 
 ```plaintext
-cd pornhub-tv
-make up
-make shell
-npm install --prefix application
+$ cd pornhub-tv
+$ make up
+$ make shell
+$ npm install --prefix application
 ```
