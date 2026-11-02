@@ -1,12 +1,12 @@
-[language-server.gopls]
+[language-server.typescript-language-server]
 command = "podman"
-args = ["compose", "exec", "android", "gopls"]
+args = ["compose", "--file", ".container/compose.dev.yaml", "exec", "android", "typescript-language-server", "--stdio"]
 
 [[language]]
 name = "javascript"
 auto-format = true
 language-servers = ["gopls"]
-formatter = { command = "podman", args = ["compose", "exec", "android", "gofmt", "-s"] }
+formatter = { command = "podman", args = ["compose", "--file", ".container/compose.dev.yaml", "exec", "android", "gofmt", "-s"] }
 
 [[language]]
 name = "gomod"
