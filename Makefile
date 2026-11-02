@@ -41,10 +41,11 @@ run:
 
 build:
 	@podman compose exec -T android bash -e <<'EOF'
+	out=$$(pwd)/build
+	mkdir -p $${out}
 	cd /workspace/application
 	npm install
 	cd android
 	./gradlew assembleRelease --no-daemon
-	mkdir -p ../../build
-	mv -f app/build/outputs/apk/release/*.apk ../../build/
+	mv -f app/build/outputs/apk/release/*.apk $${out}
 	EOF
