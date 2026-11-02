@@ -2,6 +2,15 @@
 
 An unofficial, open-source client that brings Pornhub to Amazon Fire TV devices.
 
+## Features
+
+- Video previews
+- Content search
+- Category browsing
+- Subscriptions page
+- Watch history
+- Skip video intros
+
 ## Installation
 
 1. On your Fire TV, go to App store and install the **Downloader** app
