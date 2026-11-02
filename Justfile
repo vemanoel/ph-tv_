@@ -1,5 +1,12 @@
-export PODMAN_COMPOSE_PROVIDER ?= $(shell command -v podman-compose)
-export COMPOSE_FILE ?= .container/compose.dev.yaml
+export PODMAN_COMPOSE_PROVIDER := env_var_or_default(
+    "PODMAN_COMPOSE_PROVIDER",
+    `command -v podman-compose`
+)
+
+export COMPOSE_FILE := env_var_or_default(
+    "COMPOSE_FILE",
+    ".container/compose.dev.yaml"
+)
 
 up:
 	podman compose up --build --detach
