@@ -8,7 +8,7 @@
 
 ## Environment setup
 
-```bash
+```plaintext
 cd pornhub-tv
 make up
 make shell
