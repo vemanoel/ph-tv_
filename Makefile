@@ -39,6 +39,7 @@ run:
 	npm exec react-native run-android
 	EOF
 
+.PHONY: build
 build:
 	@podman compose exec -T android bash -e <<'EOF'
 	out=$$(pwd)/build
