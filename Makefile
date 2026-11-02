@@ -14,14 +14,14 @@ shell:
 
 pair:
 	podman compose exec android bash -e <<'EOF'
-	read -rp "IP Address: " address
-	read -rp "Pair code: " pair_code
+	read -rp "Address: " address
+	read -rp "Code: " pair_code
 	adb pair $${address} $${pair_code}
 	EOF
 
 connect:
 	podman compose exec android bash -e <<'EOF'
-  read -rp "IP Address: " address
+  	read -rp "Address: " address
 	adb connect $${address}
 	EOF
 
