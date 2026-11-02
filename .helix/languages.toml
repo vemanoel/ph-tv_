@@ -20,6 +20,8 @@ formatter = { command = "podman", args = [
     "exec",
     "-T",
     "android",
+    "npm",
+    "exec",
     "prettier",
     "--use-tabs",
     "--stdin-filepath",
@@ -41,8 +43,8 @@ formatter = { command = "podman", args = [
     "--single-quote",
     "--jsx-single-quote",
     "--use-tabs",
-    "--stdin-filepath",
-    "%{buffer_name}",
+    "--parser",
+    "babel",
 ] }
 
 [[language]]
@@ -59,6 +61,6 @@ formatter = { command = "podman", args = [
     "prettier",
     "--single-quote",
     "--use-tabs",
-    "--stdin-filepath",
-    "%{buffer_name}",
+    "--parser",
+    "babel",
 ] }
