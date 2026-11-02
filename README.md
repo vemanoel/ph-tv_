@@ -23,6 +23,10 @@
     ```
 8. A prompt will appear on your Fire TV asking: **"Allow USB debugging?"**. Check the box  
    **"Always allow from this computer"**, select **Allow** and press the Enter button on your remote
+9. Return to the terminal and run:
+    ```bash
+    just run
+   ```
 
 ### Running
 
@@ -32,7 +36,4 @@
     just connect <firetv-ip-address>
     just start
     ```
-2. Open a second terminal in the project root directory and run:
-    ```bash
-    just run
-    ```
+2. Open the TVApp
