@@ -28,6 +28,8 @@ apt-get install --yes --no-install-recommends unzip
 
 apt-get install --yes --no-install-recommends openjdk-${JAVA_VERSION}-jdk
 
+rm -rf /var/lib/apt/lists/*
+
 mkdir -p ${ANDROID_HOME}/cmdline-tools
 ZIP_FILE=commandlinetools-linux-${ANDROID_COMMAND_LINE_TOOLS_VERSION}_latest.zip
 curl -fsSLO https://dl.google.com/android/repository/${ZIP_FILE}
@@ -47,6 +49,4 @@ nvm install ${NODE_VERSION}
 
 npm install --global prettier@3.9.10
 npm install --global typescript-language-server@6.0.3 typescript@7.0.2
-
-rm -rf /var/lib/apt/lists/*
 EOF
