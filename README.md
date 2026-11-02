@@ -9,7 +9,9 @@
 ## Environment setup
 
 ```bash
-cd ph-tv
+cd pornhub-tv
 make up
-make install
+make shell
+cd application
+npm install
 ```
