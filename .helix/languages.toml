@@ -1,15 +1,47 @@
 [language-server.typescript-language-server]
 command = "podman"
-args = [ "compose", "--file", ".container/compose.dev.yaml", "exec", "android", "typescript-language-server", "--stdio" ]
+args = [
+    "compose",
+    "--file",
+    ".container/compose.dev.yaml",
+    "exec",
+    "android",
+    "typescript-language-server",
+    "--stdio",
+]
 
 [[language]]
 name = "jsx"
 auto-format = true
-language-servers = [ "typescript-language-server" ] 
-formatter = { command = "podman", args = [ "compose", "--file", ".container/compose.dev.yaml", "exec", "android", "prettier", "--single-quote", "--trailing-comma", "all", "--arrow-parens", "always" ] }
+language-servers = [ "typescript-language-server" ]
+formatter = { command = "podman", args = [
+    "compose",
+    "--file",
+    ".container/compose.dev.yaml",
+    "exec",
+    "-T",
+    "android",
+    "prettier",
+    "--single-quote",
+    "--trailing-comma",
+    "all",
+    "--arrow-parens",
+    "always",
+] }
 
 [[language]]
 name = "javascript"
 auto-format = true
-language-servers = [ "typescript-language-server" ] 
-formatter = { command = "podman", args = [ "compose", "--file", ".container/compose.dev.yaml", "exec", "android", "prettier", "--single-quote", "--trailing-comma", "all", "--arrow-parens", "always" ] }
+language-servers = [ "typescript-language-server" ]
+formatter = { command = "podman", args = [
+    "compose",
+    "--file",
+    ".container/compose.dev.yaml",
+    "exec",
+    "-T",
+    "android",
+    "prettier",
+    "--single-quote",
+    "--trailing-comma", "all",
+    "--arrow-parens", "always",
+] }
