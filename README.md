@@ -12,6 +12,5 @@
 cd pornhub-tv
 make up
 make shell
-cd application
-npm install
+npm install --prefix application
 ```
