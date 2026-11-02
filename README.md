@@ -1,10 +1,16 @@
-# pornhub-tv
+y# pornhub-tv
 
-An unofficial, open-source client that brings Pornhub to Android TV and Amazon Fire TV devices.
+An unofficial, open-source client that brings Pornhub to Amazon Fire TV devices.
+
+## Installation
+
+1. On your Fire TV, go to App store and install the **Downloader** app
+2. Open Downloader and enter the code `83929`
+3. Follow the on-screen instructions to download and install the application.
 
 ## Development
 
-### Prerequisites
+### Prerequisitoes
 
 - [just](https://just.systems/man/en/packages.html)
 - [podman](https://podman.io/docs/installation)
