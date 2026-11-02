@@ -1,8 +1,4 @@
 {
-	"scripts": {
-		"android": "react-native run-android",
-		"start": "react-native start"
-	},
 	"dependencies": {
 		"react": "19.3.0",
 		"react-native": "npm:react-native-tvos@0.88.0-0",
