@@ -23,10 +23,14 @@ formatter = { command = "podman", args = [
     "android",
     "prettier",
     "--single-quote",
+    "--jsx-single-quote",
     "--trailing-comma",
     "all",
+    "--tab-width",
+    "4",
+    "--use-tabs",
     "--arrow-parens",
-    "always",
+    "avoid",
 ] }
 
 [[language]]
@@ -42,6 +46,11 @@ formatter = { command = "podman", args = [
     "android",
     "prettier",
     "--single-quote",
-    "--trailing-comma", "all",
-    "--arrow-parens", "always",
+    "--trailing-comma",
+    "all",
+    "--tab-width",
+    "4",
+    "--use-tabs",
+    "--arrow-parens",
+    "avoid",
 ] }
