@@ -34,7 +34,6 @@ jobs:
       - name: Build artifacts
         run: |
           make up
-          make install
           make build
 
       - uses: softprops/action-gh-release@v3.0.3
