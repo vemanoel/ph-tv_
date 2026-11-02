@@ -51,6 +51,18 @@ android {
     }
 }
 
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        variant.outputs.each { output ->
+            def abi = output.filters.find {
+                it.filterType == com.android.build.api.variant.FilterConfiguration.FilterType.ABI
+            }?.identifier
+
+            output.outputFileName.set("pornhubtv-${output.versionName.get()}-${abi}.apk")
+        }
+    }
+}
+
 dependencies {
     implementation("com.facebook.react:react-android")
 
