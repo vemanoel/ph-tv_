@@ -13,6 +13,15 @@ shell:
 	@podman compose exec android bash
 
 pair:
+	@podman compose exec -T android sh -e <<'EOF'
+	printf "Address: "
+	read address
+	printf "Code: "
+	read pair_code
+	adb pair $$address $${pair_code}
+	EOF
+
+pair:
 	@podman compose exec -T android bash -e <<'EOF'
 	read -rp "Address: " address
 	read -rp "Code: " pair_code
