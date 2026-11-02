@@ -1,0 +1,12 @@
+services:
+  android:
+    image: localhost/raccoon-android
+    privileged: true
+    build:
+      context: ..
+      dockerfile: Containerfile
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace:Z
+    command: sleep infinity
+  
