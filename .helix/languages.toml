@@ -1,0 +1,23 @@
+[language-server.gopls]
+command = "podman"
+args = ["compose", "exec", "android", "gopls"]
+
+[[language]]
+name = "javascript"
+auto-format = true
+language-servers = ["gopls"]
+formatter = { command = "podman", args = ["compose", "exec", "android", "gofmt", "-s"] }
+
+[[language]]
+name = "gomod"
+auto-format = true
+language-servers = ["gopls"]
+
+[[language]]
+name = "gowork"
+auto-format = true
+language-servers = ["gopls"]
+
+[[language]]
+name = "json"
+formatter = { command = "jq", args = [".", "--indent", "4", "--tab"] }
