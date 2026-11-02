@@ -14,35 +14,29 @@ shell:
 
 pair:
 	@podman compose exec -T android sh -e <<'EOF'
-	printf "Address: "
-	read address
-	printf "Code: "
-	read pair_code
-	adb pair $$address $${pair_code}
-	EOF
-
-pair:
-	@podman compose exec -T android bash -e <<'EOF'
-	read -rp "Address: " address
-	read -rp "Code: " pair_code
-	adb pair $${address} $${pair_code}
+	printf "addr: "
+    read -r addr
+	printf "code: "
+    read -r code
+	adb pair $${addr} $${code}
 	EOF
 
 connect:
-	@podman compose exec -T android bash -e <<'EOF'
-  	read -rp "Address: " address
-	adb connect $${address}
+	@podman compose exec -T android sh -e <<'EOF'
+	printf "addr: "
+    read -r addr
+	adb connect $${addr}
 	EOF
 
 start:
-	@podman compose exec -T android bash -e <<'EOF'
+	@podman compose exec -T android sh -e <<'EOF'
 	cd application
 	npm install
 	npm exec react-native start
 	EOF
 
 run:
-	@podman compose exec -T android bash -e <<'EOF'
+	@podman compose exec -T android sh -e <<'EOF'
 	cd application
 	npm install
 	npm exec react-native run-android
@@ -50,7 +44,7 @@ run:
 
 .PHONY: build
 build:
-	@podman compose exec -T android bash -e <<'EOF'
+	@podman compose exec -T android sh -e <<'EOF'
 	out=$$(pwd)/build
 	mkdir -p $${out}
 	cd application
