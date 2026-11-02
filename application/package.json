@@ -1,8 +1,7 @@
 {
 	"dependencies": {
 		"react": "19.3.0",
-		"react-native": "npm:react-native-tvos@0.88.0-0",
-		"react-native-safe-area-context": "5.11.0"
+		"react-native": "npm:react-native-tvos@0.88.0-0"
 	},
 	"overrides": {
 		"react-native": "npm:react-native-tvos@0.88.0-0"
