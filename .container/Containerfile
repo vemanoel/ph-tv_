@@ -45,6 +45,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh
 . ${NVM_DIR}/nvm.sh
 nvm install ${NODE_VERSION}
 
+npm install --global dprint@0.64.3
 npm install --global prettier@3.9.10
 npm install --global typescript-language-server@6.0.3 typescript@7.0.2
 
