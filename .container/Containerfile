@@ -32,8 +32,8 @@ rm -rf /var/lib/apt/lists/*
 
 mkdir -p ${ANDROID_HOME}/cmdline-tools
 ZIP_FILE=commandlinetools-linux-${ANDROID_COMMAND_LINE_TOOLS_VERSION}_latest.zip
-curl -fsSLO https://dl.google.com/android/repository/${ZIP_FILE}
-unzip -q ${ZIP_FILE}
+curl -fLO https://dl.google.com/android/repository/${ZIP_FILE}
+unzip ${ZIP_FILE}
 mv cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest
 rm -rf ${ZIP_FILE}
 
