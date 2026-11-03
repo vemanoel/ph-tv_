@@ -15,23 +15,23 @@ set -e
 
 apt-get update --yes
 
-apt-get install --yes ncurses-bin=6.6+20260608-2 curl=8.23.0-1 libarchive-tools=3.8.10-2
+apt-get install --yes --no-install-recommends ncurses-bin curl libarchive-tools
 
-curl -fL https://apt.corretto.aws/corretto.key | sudo gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg
-printf 'deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main\n' > /etc/apt/sources.list.d/corretto.list
+apt-get install --yes --no-install-recommends gpg ca-certificates
+curl -fL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg
+printf 'deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main\n' \
+  > /etc/apt/sources.list.d/corretto.list
 apt-get --yes update
 apt-get install --yes java-21-amazon-corretto-jdk
 
-mkdir -p $ANDROID_HOME
-
 mkdir -p $ANDROID_HOME/cmdline-tools/15859902
-curl -fL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip | bsdtar -xf - -C $ANDROID_HOME/cmdline-tools/15859902 --strip-components 1
-
-curl -fL https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip | bsdtar -xf - -C $ANDROID_HOME
-
+curl -fL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip | \
+  bsdtar --strip-components=1 -xpf - -C $ANDROID_HOME/cmdline-tools/15859902
 android sdk install "ndk;27.1.12297006"
 android sdk install "build-tools;36.0.0"
 android sdk install "platforms;android-36"
+curl -fL https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip | \
+  bsdtar --preserve-permissions -extract --file - -C $ANDROID_HOME
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 . $NVM_DIR/nvm.sh
