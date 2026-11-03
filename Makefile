@@ -10,7 +10,7 @@ down:
 	@podman compose down
 
 shell:
-	@podman compose exec android bash
+	@podman compose exec android sh
 
 pair:
 	@podman compose exec -T android sh -e <<'EOF'
