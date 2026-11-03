@@ -15,16 +15,16 @@ shell:
 pair:
 	@podman compose exec -T android sh -e <<'EOF'
 	printf "addr: "
-    read -r addr
+	read -r addr
 	printf "code: "
-    read -r code
+	read -r code
 	adb pair $${addr} $${code}
 	EOF
 
 connect:
 	@podman compose exec -T android sh -e <<'EOF'
 	printf "addr: "
-    read -r addr
+	read -r addr
 	adb connect $${addr}
 	EOF
 
