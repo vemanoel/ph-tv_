@@ -10,7 +10,7 @@ ARG NODE_IMAGE=docker.io/library/node:26.13.0-alpine@sha256:d431b1d60cd8de74dc66
 COPY --from=$NODE_IMAGE /usr/local/bin /usr/local/bin
 COPY --from=$NODE_IMAGE /usr/local/lib/node_modules /usr/local/lib/node_modules
 
-RUN: npm install --global prettier@3.9.10 typescript-language-server@6.0.3 typescript@7.0.2
+RUN npm install --global prettier@3.9.10 typescript-language-server@6.0.3 typescript@7.0.2
 
 ENV ANDROID_USER_HOME=/root/.android
 ENV ANDROID_HOME=/opt/android-sdk
