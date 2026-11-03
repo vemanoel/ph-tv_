@@ -1,6 +1,6 @@
 FROM docker.io/library/debian:stable-slim@sha256:dd324f2b5d8d63278a0ab2831193c0b2d192bc4d7f7a1879408fc51300546cdb
 
-ENV JAVA_HOME=/usr/lib/jvm/java-21-amazon-corretto
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 ENV ANDROID_HOME=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV ANDROID_NDK_HOME=$ANDROID_HOME/ndk/27.1.12297006
@@ -18,11 +18,7 @@ apt-get update --yes
 
 apt-get install --yes --no-install-recommends ncurses-bin curl unzip
 
-apt-get install --yes --no-install-recommends gpg ca-certificates
-curl -fL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg
-printf 'deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main\n' > /etc/apt/sources.list.d/corretto.list
-apt-get --yes update
-apt-get install --yes java-21-amazon-corretto-jdk=1:21.0.13.0.11-1
+apt-get install --yes openjdk-21-jdk-headless
 
 mkdir -p $ANDROID_HOME/cmdline-tools
 curl -fL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip -o commandlinetools.zip
