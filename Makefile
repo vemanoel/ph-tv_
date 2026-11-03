@@ -45,7 +45,7 @@ run:
 .PHONY: build
 build:
 	@podman compose exec -T android sh -e <<'EOF'
-	out=$$(pwd)/build
+	out=$$(pwd)/apks
 	mkdir -p $${out}
 	cd application
 	npm install
