@@ -1,6 +1,6 @@
 services:
   development:
-    image: localhost/pornhubtv
+    image: localhost/pornhubtv:development
     privileged: true
     build:
       context: ..
