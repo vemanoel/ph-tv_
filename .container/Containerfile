@@ -38,6 +38,7 @@ unzip platform-tools.zip
 rm platform-tools.zip
 mv platform-tools $ANDROID_HOME
 
+apt-get install --yes --no-install-recommends libatomic1
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 . $NVM_DIR/nvm.sh
 nvm install 26.13.0
