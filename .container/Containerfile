@@ -1,11 +1,11 @@
 FROM docker.io/library/debian:stable-slim@sha256:dd324f2b5d8d63278a0ab2831193c0b2d192bc4d7f7a1879408fc51300546cdb
 
-ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64
 ENV ANDROID_HOME=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV ANDROID_NDK_HOME=$ANDROID_HOME/ndk/27.1.12297006
-ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 ENV PATH=$PATH:$ANDROID_HOME/platform-tools
+ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/15859902/bin
 
 ENV NVM_DIR=/root/.nvm
 ENV PATH=$PATH:$NVM_DIR/versions/node/v26.13.0/bin
@@ -15,25 +15,21 @@ set -e
 
 apt-get update --yes
 
-apt-get install --yes --no-install-recommends ncurses-bin=6.6+20260608-2
-apt-get install --yes --no-install-recommends curl=8.23.0-1
-apt-get install --yes --no-install-recommends unzip=6.0-31
+apt-get install --yes ncurses-bin=6.6+20260608-2 curl=8.23.0-1 libarchive-tools=3.8.10-2
 
-apt-get install --yes --no-install-recommends openjdk-21-jdk=21.0.13.0.3+1-1
+apt-get install --yes apt-transport-https=3.0.3 gpg gawk
+curl -fL https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor | tee /etc/apt/trusted.gpg.d/adoptium.gpg > /dev/null
+printf 'deb https://packages.adoptium.net/artifactory/deb %s main\n' "$(awk -F= '/^VERSION_CODENAME/{print $2}' /etc/os-release)" > /etc/apt/sources.list.d/adoptium.list
+apt-get update --yes
+apt-get install --yes temurin-21-jdk
 
-rm -rf /var/lib/apt/lists/*
+mkdir -p $ANDROID_HOME
 
-mkdir -p $ANDROID_HOME/cmdline-tools
-ZIP_FILE=commandlinetools-linux-15859902_latest.zip
-curl -fLO https://dl.google.com/android/repository/$ZIP_FILE
-unzip $ZIP_FILE
-mv cmdline-tools $ANDROID_HOME/cmdline-tools/latest
-rm $ZIP_FILE
+mkdir -p $ANDROID_HOME/cmdline-tools/15859902
+curl -fL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip | bsdtar -xf - -C $ANDROID_HOME/cmdline-tools/15859902 --strip-components 1
 
-# TODO: Fixar a versão do platform tools
-https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip
+curl -fL https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip | bsdtar -xf - -C $ANDROID_HOME
 
-android sdk install "platform-tools"
 android sdk install "ndk;27.1.12297006"
 android sdk install "build-tools;36.0.0"
 android sdk install "platforms;android-36"
@@ -44,4 +40,6 @@ nvm install 26.13.0
 
 npm install --global prettier@3.9.10
 npm install --global typescript-language-server@6.0.3 typescript@7.0.2
+
+rm -rf /var/lib/apt/lists/*
 EOF
