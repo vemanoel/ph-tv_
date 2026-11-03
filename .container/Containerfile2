@@ -1,0 +1,41 @@
+FROM docker.io/library/alpine:3.23@sha256:3d67941fed5ae436b2bb9791cb3f50a252441c7706bbc5b4e738936df8ff8306
+
+ARG TEMURIN_IMAGE=docker.io/library/eclipse-temurin:21-jdk-alpine@sha256:56f10ddc224d7b900698422ffe82432ed0e178f606bd66859ed1d179825dfbe3
+ENV JAVA_HOME=/opt/java/openjdk
+COPY --from=$TEMURIN_IMAGE $JAVA_HOME $JAVA_HOME
+ENV PATH=$JAVA_HOME/bin:${PATH}
+
+RUN apk add --no-cache libatomic libstdc++ libgcc
+ARG NODE_IMAGE=docker.io/library/node:26.13.0-alpine@sha256:d431b1d60cd8de74dc66d271c236f66227998c308e011e60faa9c60dc4d37382
+COPY --from=$NODE_IMAGE /usr/local/bin /usr/local/bin
+COPY --from=$NODE_IMAGE /usr/local/lib/node_modules /usr/local/lib/node_modules
+
+RUN <<EOF
+set -e
+npm install --global prettier@3.9.10
+npm install --global typescript-language-server@6.0.3 typescript@7.0.2
+EOF
+
+ENV ANDROID_HOME=/opt/android-sdk
+ENV ANDROID_SDK_ROOT=/opt/android-sdk
+ENV ANDROID_NDK_HOME=$ANDROID_HOME/ndk/27.1.12297006
+ENV PATH=$PATH:$ANDROID_HOME/platform-tools
+ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/15859902/bin
+RUN <<EOF
+set -e
+
+apk --no-cache add curl unzip
+
+mkdir -p $ANDROID_HOME/cmdline-tools
+curl -fL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip -o commandlinetools.zip
+unzip commandlinetools.zip
+rm commandlinetools.zip
+mv cmdline-tools $ANDROID_HOME/cmdline-tools/15859902
+
+android sdk install "ndk;27.1.12297006" "build-tools;36.0.0" "platforms;android-36"
+
+curl -fL https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip -o platform-tools.zip
+unzip platform-tools.zip
+rm platform-tools.zip
+mv platform-tools $ANDROID_HOME
+EOF
