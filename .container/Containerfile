@@ -8,7 +8,7 @@ ENV PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin
 ENV PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 ENV NVM_DIR=/root/.nvm
-ENV PATH=${PATH}:${NVM_DIR}/versions/node/v${NODE_VERSION}/bin
+ENV PATH=${PATH}:${NVM_DIR}/versions/node/v26.13.0/bin
 
 RUN <<EOF
 set -e
