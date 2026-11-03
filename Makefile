@@ -9,11 +9,11 @@ up:
 down:
 	@podman compose down
 
-shell:
-	@podman compose exec android sh
+sh:
+	@podman compose exec development sh
 
 pair:
-	@podman compose exec -T android sh -e <<'EOF'
+	@podman compose exec -T development sh -e <<'EOF'
 	printf "addr: "
 	read -r addr
 	printf "code: "
@@ -22,29 +22,28 @@ pair:
 	EOF
 
 connect:
-	@podman compose exec -T android sh -e <<'EOF'
+	@podman compose exec -T development sh -e <<'EOF'
 	printf "addr: "
 	read -r addr
 	adb connect $${addr}
 	EOF
 
 start:
-	@podman compose exec -T android sh -e <<'EOF'
+	@podman compose exec -T development sh -e <<'EOF'
 	cd application
 	npm install
 	npm exec react-native start
 	EOF
 
 run:
-	@podman compose exec -T android sh -e <<'EOF'
+	@podman compose exec -T development sh -e <<'EOF'
 	cd application
 	npm install
 	npm exec react-native run-android
 	EOF
 
-.PHONY: build
 build:
-	@podman compose exec -T android sh -e <<'EOF'
+	@podman compose exec -T development sh -e <<'EOF'
 	out=$$(pwd)/apks
 	mkdir -p $${out}
 	cd application
