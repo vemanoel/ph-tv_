@@ -38,7 +38,7 @@ jobs:
 
       - uses: softprops/action-gh-release@v3.0.3
         with:
-          files: build/*
+          files: apks/*
           generate_release_notes: true
           tag_name: v${{ inputs.version }}
   
