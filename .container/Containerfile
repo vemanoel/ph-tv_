@@ -24,18 +24,18 @@ apt-get --yes update
 apt-get install --yes java-21-amazon-corretto-jdk
 
 mkdir -p $ANDROID_HOME/cmdline-tools/15859902
-curl -fL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip
-unzip commandlinetools-linux-15859902_latest.zip
-rm commandlinetools-linux-15859902_latest.zip
+curl -fL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip -o commandlinetools.zip
+unzip commandlinetools.zip
+rm commandlinetools.zip
 mv cmdline-tools $ANDROID_HOME/cmdline-tools/15859902
 
 android sdk install "ndk;27.1.12297006"
 android sdk install "build-tools;36.0.0"
 android sdk install "platforms;android-36"
 
-curl -fLO https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip
-unzip platform-tools_r37.0.1-linux.zip
-rm platform-tools_r37.0.1-linux.zip
+curl -fLO https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip -o platform-tools.zip
+unzip platform-tools.zip
+rm platform-tools.zip
 mv platform-tools $ANDROID_HOME
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
