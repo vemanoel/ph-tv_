@@ -37,6 +37,9 @@ unzip ${ZIP_FILE}
 mv cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest
 rm -rf ${ZIP_FILE}
 
+# TODO: Fixar a versão do platform tools
+https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip
+
 yes | sdkmanager --licenses
 sdkmanager "platform-tools"
 sdkmanager "ndk;${ANDROID_NDK_VERSION}"
