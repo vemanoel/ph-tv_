@@ -4,8 +4,8 @@ ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 ENV ANDROID_HOME=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV ANDROID_NDK_HOME=$ANDROID_HOME/ndk/27.1.12297006
-ENV PATH=${PATH}:$ANDROID_HOME/cmdline-tools/latest/bin
-ENV PATH=${PATH}:$ANDROID_HOME/platform-tools
+ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+ENV PATH=$PATH:$ANDROID_HOME/platform-tools
 
 ENV NVM_DIR=/root/.nvm
 ENV PATH=$PATH:$NVM_DIR/versions/node/v26.13.0/bin
@@ -28,7 +28,7 @@ ZIP_FILE=commandlinetools-linux-15859902_latest.zip
 curl -fLO https://dl.google.com/android/repository/$ZIP_FILE
 unzip $ZIP_FILE
 mv cmdline-tools $ANDROID_HOME/cmdline-tools/latest
-rm -rf $ZIP_FILE
+rm $ZIP_FILE
 
 # TODO: Fixar a versão do platform tools
 https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip
