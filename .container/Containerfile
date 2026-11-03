@@ -40,11 +40,10 @@ rm -rf ${ZIP_FILE}
 # TODO: Fixar a versão do platform tools
 https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip
 
-yes | sdkmanager --licenses
-sdkmanager "platform-tools"
-sdkmanager "ndk;${ANDROID_NDK_VERSION}"
-sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"
-sdkmanager "platforms;android-${ANDROID_PLATFORM_VERSION}"
+android sdk install "platform-tools"
+android sdk install "ndk;${ANDROID_NDK_VERSION}"
+android sdk install "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"
+android sdk install "platforms;android-${ANDROID_PLATFORM_VERSION}"
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash
 . ${NVM_DIR}/nvm.sh
