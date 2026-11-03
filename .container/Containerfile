@@ -1,14 +1,9 @@
 FROM docker.io/library/debian:stable-slim@sha256:dd324f2b5d8d63278a0ab2831193c0b2d192bc4d7f7a1879408fc51300546cdb
 
-ENV ANDROID_COMMAND_LINE_TOOLS_VERSION=15859902
-ENV ANDROID_PLATFORM_VERSION=36
-ENV ANDROID_BUILD_TOOLS_VERSION=36.0.0
-ENV ANDROID_NDK_VERSION=27.1.12297006
-ENV JAVA_VERSION=21
-ENV JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 ENV ANDROID_HOME=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
-ENV ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/${ANDROID_NDK_VERSION}
+ENV ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/27.1.12297006
 ENV PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin
 ENV PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
@@ -22,16 +17,16 @@ set -e
 
 apt-get update --yes
 
-apt-get install --yes --no-install-recommends ncurses-bin
-apt-get install --yes --no-install-recommends curl
-apt-get install --yes --no-install-recommends unzip
+apt-get install --yes --no-install-recommends ncurses-bin=6.6+20260608-2
+apt-get install --yes --no-install-recommends curl=8.23.0-1
+apt-get install --yes --no-install-recommends unzip=6.0-31
 
-apt-get install --yes --no-install-recommends openjdk-${JAVA_VERSION}-jdk
+apt-get install --yes --no-install-recommends openjdk-21-jdk=21.0.13.0.3+1-1
 
 rm -rf /var/lib/apt/lists/*
 
 mkdir -p ${ANDROID_HOME}/cmdline-tools
-ZIP_FILE=commandlinetools-linux-${ANDROID_COMMAND_LINE_TOOLS_VERSION}_latest.zip
+ZIP_FILE=commandlinetools-linux-15859902_latest.zip
 curl -fLO https://dl.google.com/android/repository/${ZIP_FILE}
 unzip ${ZIP_FILE}
 mv cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest
@@ -41,9 +36,9 @@ rm -rf ${ZIP_FILE}
 https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip
 
 android sdk install "platform-tools"
-android sdk install "ndk;${ANDROID_NDK_VERSION}"
-android sdk install "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"
-android sdk install "platforms;android-${ANDROID_PLATFORM_VERSION}"
+android sdk install "ndk;27.1.12297006"
+android sdk install "build-tools;36.0.0"
+android sdk install "platforms;android-36"
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash
 . ${NVM_DIR}/nvm.sh
