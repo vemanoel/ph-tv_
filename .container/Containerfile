@@ -15,19 +15,35 @@ set -e
 
 apt-get update --yes
 
-apt-get install --yes --no-install-recommends ncurses-bin curl libarchive-tools
+apt-get install --yes --no-install-recommends ncurses-bin curl unzip
 
 apt-get install --yes --no-install-recommends gpg ca-certificates
 curl -fL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg
-printf 'deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main\n' \
-  > /etc/apt/sources.list.d/corretto.list
+printf 'deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main\n' > /etc/apt/sources.list.d/corretto.list
 apt-get --yes update
 apt-get install --yes java-21-amazon-corretto-jdk
 
 mkdir -p $ANDROID_HOME/cmdline-tools/15859902
-curl -fL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip | \
-  bsdtar --strip-components=1 -xpf - -C $ANDROID_HOME/cmdline-tools/15859902
+curl -fL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip
+unzip commandlinetools-linux-15859902_latest.zip
+rm commandlinetools-linux-15859902_latest.zip
+mv cmdline-tools $ANDROID_HOME/cmdline-tools/15859902
 
+android sdk install "ndk;27.1.12297006"
+android sdk install "build-tools;36.0.0"
+android sdk install "platforms;android-36"
+
+curl -fLO https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip
+unzip platform-tools_r37.0.1-linux.zip
+rm platform-tools_r37.0.1-linux.zip
+mv platform-tools $ANDROID_HOME
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+. $NVM_DIR/nvm.sh
+nvm install 26.13.0
+
+npm install --global prettier@3.9.10
+npm install --global typescript-language-server@6.0.3 typescript@7.0.2
 
 rm -rf /var/lib/apt/lists/*
 EOF
