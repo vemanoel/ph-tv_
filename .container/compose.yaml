@@ -1,6 +1,6 @@
 services:
-  android:
-    image: localhost/raccoon-android
+  development:
+    image: localhost/pornhubtv
     privileged: true
     build:
       context: ..
@@ -9,4 +9,3 @@ services:
     volumes:
       - ..:/workspace:Z
     command: sleep infinity
-  
