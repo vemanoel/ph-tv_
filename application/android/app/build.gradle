@@ -28,8 +28,6 @@ react {
     autolinkLibrariesWithApp()
 }
 
-def enableProguardInReleaseBuilds = false
-
 android {
     namespace = "com.pornhubtv"
 
@@ -66,7 +64,7 @@ android {
         }
         release {
             signingConfig = signingConfigs.debug
-            minifyEnabled = enableProguardInReleaseBuilds
+            minifyEnabled = true
             proguardFiles(
                 android.getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
