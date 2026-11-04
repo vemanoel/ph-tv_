@@ -1,11 +1,11 @@
 services:
   development:
+    container_name: pornhubtv_development
     image: localhost/pornhubtv:development
     privileged: true
     build:
       context: ..
       dockerfile: .container/Containerfile
-    working_dir: /workspace
-    volumes:
-      - ..:/workspace:Z
+    working_dir: $PWD
+    volumes: $PWD:$PWD:Z
     command: sleep infinity
