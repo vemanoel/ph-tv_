@@ -59,6 +59,7 @@ build:
 
 	cd application
 	npm install
+
 	cd android
 	./gradlew assembleRelease --no-daemon --warning-mode all
 	mv app/build/outputs/apk/release/*.apk $$out
