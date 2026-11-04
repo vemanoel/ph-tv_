@@ -9,22 +9,6 @@ args = [
 ]
 
 [[language]]
-name = "json"
-auto-format = true
-formatter = { command = "podman", args = [
-    "compose",
-    "exec",
-    "-T",
-    "development",
-    "npm",
-    "exec",
-    "prettier",
-    "--use-tabs",
-    "--stdin-filepath",
-    "%{buffer_name}",
-] }
-
-[[language]]
 name = "jsx"
 auto-format = true
 language-servers = ["typescript-language-server"]
