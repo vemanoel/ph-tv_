@@ -2,10 +2,8 @@
 command = "podman"
 args = [
     "compose",
-    "--file",
-    ".container/compose.dev.yaml",
     "exec",
-    "android",
+    "development",
     "typescript-language-server",
     "--stdio",
 ]
@@ -15,11 +13,9 @@ name = "json"
 auto-format = true
 formatter = { command = "podman", args = [
     "compose",
-    "--file",
-    ".container/compose.dev.yaml",
     "exec",
     "-T",
-    "android",
+    "development",
     "npm",
     "exec",
     "prettier",
@@ -34,11 +30,9 @@ auto-format = true
 language-servers = ["typescript-language-server"]
 formatter = { command = "podman", args = [
     "compose",
-    "--file",
-    ".container/compose.dev.yaml",
     "exec",
     "-T",
-    "android",
+    "development",
     "prettier",
     "--single-quote",
     "--jsx-single-quote",
@@ -55,11 +49,9 @@ auto-format = true
 language-servers = ["typescript-language-server"]
 formatter = { command = "podman", args = [
     "compose",
-    "--file",
-    ".container/compose.dev.yaml",
     "exec",
     "-T",
-    "android",
+    "development",
     "prettier",
     "--single-quote",
     "--use-tabs",
