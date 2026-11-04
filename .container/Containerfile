@@ -1,14 +1,16 @@
 FROM docker.io/library/debian:stable-slim@sha256:dd324f2b5d8d63278a0ab2831193c0b2d192bc4d7f7a1879408fc51300546cdb
 
-ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-ENV ANDROID_HOME=/opt/android-sdk
-ENV ANDROID_SDK_ROOT=/opt/android-sdk
-ENV ANDROID_NDK_HOME=$ANDROID_HOME/ndk/27.1.12297006
-ENV PATH=$PATH:$ANDROID_HOME/platform-tools
-ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/15859902/bin
+ARG TEMURIN_IMAGE=docker.io/library/eclipse-temurin:21-jdk@sha256:ebfbb18d11ff163ee83b21258acf12248af48d22a0fdfdc68fa1a1516c05976a
+ENV JAVA_HOME=/opt/java/openjdk
+COPY --from=$TEMURIN_IMAGE $JAVA_HOME $JAVA_HOME
+ENV PATH=$JAVA_HOME/bin:$PATH
 
-ENV NVM_DIR=/root/.nvm
-ENV PATH=$PATH:$NVM_DIR/versions/node/v26.13.0/bin
+ARG NODE_IMAGE=docker.io/library/node:26.13.0-trixie-slim@sha256:e4db4c914bf8ad241bd24804fc25d272d89bad97e68cdc8a1414862790a02c39
+COPY --from=$NODE_IMAGE /usr/local/bin /usr/local/bin
+COPY --from=$NODE_IMAGE /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=$NODE_IMAGE /usr/lib/x86_64-linux-gnu/libatomic.so.1 /usr/lib/x86_64-linux-gnu
+
+RUN npm install --global prettier@3.9.10 typescript-language-server@6.0.3 typescript@7.0.2
 
 RUN <<EOF
 set -e
@@ -16,30 +18,9 @@ set -e
 printf 'deb [check-valid-until=no] https://snapshot.debian.org/archive/debian/20261103T113620Z trixie main\n' > /etc/apt/sources.list
 apt-get update --yes
 
-apt-get install --yes --no-install-recommends ncurses-bin curl unzip
+apt-get install --yes --no-install-recommends curl unzip
 
-apt-get install --yes openjdk-21-jdk-headless
-
-mkdir -p $ANDROID_HOME/cmdline-tools
-curl -fL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip -o commandlinetools.zip
-unzip commandlinetools.zip
-rm commandlinetools.zip
-mv cmdline-tools $ANDROID_HOME/cmdline-tools/15859902
-
-android sdk install "ndk;27.1.12297006" "build-tools;36.0.0" "platforms;android-36"
-
-curl -fL https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip -o platform-tools.zip
-unzip platform-tools.zip
-rm platform-tools.zip
-mv platform-tools $ANDROID_HOME
-
-apt-get install --yes --no-install-recommends libatomic1
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
-. $NVM_DIR/nvm.sh
-nvm install 26.13.0
-
-npm install --global prettier@3.9.10
-npm install --global typescript-language-server@6.0.3 typescript@7.0.2
+apt-get install --yes --no-install-recommends android-tools-adb
 
 rm -rf /var/lib/apt/lists/*
 EOF
