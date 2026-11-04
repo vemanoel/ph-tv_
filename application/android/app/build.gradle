@@ -44,11 +44,22 @@ android {
         }
     }
     defaultConfig {
-        applicationId = "com.pornhubtv"
-        minSdkVersion = rootProject.ext.minSdkVersion
-        targetSdkVersion = rootProject.ext.targetSdkVersion
-        versionName = providers.gradleProperty("versionName").getOrElse("0.0.0-dev")
-        versionCode = providers.gradleProperty("versionCode").getOrElse("0").toInteger()
+          applicationId = "com.pornhubtv"
+          minSdkVersion = rootProject.ext.minSdkVersion
+          targetSdkVersion = rootProject.ext.targetSdkVersion
+          versionName = providers.
+               gradleProperty("VERSION_NAME")
+               .orElse(providers.provider {
+                    throw new GradleException("ORG_GRADLE_PROJECT_VERSION_NAME is empty or not defined")
+               })
+               .get()
+          versionCode = providers.
+               gradleProperty("VERSION_CODE")
+               .orElse(providers.provider {
+                    throw new GradleException("ORG_GRADLE_PROJECT_VERSION_CODE is empty or not defined")
+               })
+               .get()
+               .toInteger()
     }
     signingConfigs {
         debug {
