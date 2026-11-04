@@ -53,9 +53,9 @@ build:
 	export ORG_GRADLE_PROJECT_VERSION_NAME=$(VERSION_NAME)
 	export ORG_GRADLE_PROJECT_VERSION_CODE=$(VERSION_CODE)
 
-	out=$$(pwd)/apks
-	rm -rf $$out
-	mkdir $$out
+	OUTDIR=$${OUTDIR:-$$(pwd)/apks}
+
+	mkdir --parents $$OUTDIR
 
 	cd application
 	npm install
@@ -64,5 +64,5 @@ build:
 	./gradlew clean
 	./gradlew assembleRelease --no-daemon --warning-mode all
 
-	mv app/build/outputs/apk/release/*.apk $$out
+	mv --force app/build/outputs/apk/release/*.apk $$OUTDIR
 	EOF
