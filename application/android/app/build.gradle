@@ -47,8 +47,8 @@ android {
         applicationId = "com.pornhubtv"
         minSdkVersion = rootProject.ext.minSdkVersion
         targetSdkVersion = rootProject.ext.targetSdkVersion
-        versionCode = 1
-        versionName = "1.0"
+        versionName = providers.gradleProperty("versionName").getOrElse("0.0.0-dev")
+        versionCode = providers.gradleProperty("versionCode").getOrElse("0").toInteger()
     }
     signingConfigs {
         debug {
