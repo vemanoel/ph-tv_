@@ -61,6 +61,6 @@ build:
 	./gradlew assembleRelease --no-daemon --warning-mode all
 
 	OUTDIR=$${OUTDIR:-$$(pwd)/apks}
-	mkdir --parents $$OUTDIR
-	mv --force app/build/outputs/apk/release/*.apk $$OUTDIR
+	mkdir -p $$OUTDIR
+	mv -f app/build/outputs/apk/release/*.apk $$OUTDIR
 	EOF
