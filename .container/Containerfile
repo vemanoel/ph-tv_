@@ -1,5 +1,7 @@
 FROM docker.io/library/debian:stable-slim@sha256:dd324f2b5d8d63278a0ab2831193c0b2d192bc4d7f7a1879408fc51300546cdb
 
+ARG CI=false
+
 ARG TEMURIN_IMAGE=docker.io/library/eclipse-temurin:21-jdk@sha256:ebfbb18d11ff163ee83b21258acf12248af48d22a0fdfdc68fa1a1516c05976a
 ENV JAVA_HOME=/opt/java/openjdk
 COPY --from=$TEMURIN_IMAGE $JAVA_HOME $JAVA_HOME
@@ -10,7 +12,11 @@ COPY --from=$NODE_IMAGE /usr/local/bin /usr/local/bin
 COPY --from=$NODE_IMAGE /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=$NODE_IMAGE /usr/lib/x86_64-linux-gnu/libatomic.so.1 /usr/lib/x86_64-linux-gnu
 
-RUN npm install --global prettier@3.9.10 typescript-language-server@6.0.3 typescript@7.0.2
+RUN <<'EOF'
+if [ "$CI" = "false" ]; then
+    npm install --global prettier@3.9.10 typescript-language-server@6.0.3 typescript@7.0.2
+fi
+EOF
 
 RUN <<EOF
 set -e
