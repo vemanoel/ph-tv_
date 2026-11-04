@@ -36,14 +36,12 @@ connect:
 
 start:
 	@podman compose exec -T development sh -e <<'EOF'
-	cd application
 	npm install
 	npm exec react-native start
 	EOF
 
 run:
 	@podman compose exec -T development sh -e <<'EOF'
-	cd application
 	npm install
 	npm exec react-native run-android
 	EOF
@@ -53,7 +51,6 @@ build:
 	export ORG_GRADLE_PROJECT_VERSION_NAME=$(VERSION_NAME)
 	export ORG_GRADLE_PROJECT_VERSION_CODE=$(VERSION_CODE)
 
-	cd application
 	npm install
 
 	cd android
