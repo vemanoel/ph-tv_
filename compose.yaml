@@ -4,8 +4,8 @@ services:
     image: localhost/pornhubtv:development
     privileged: true
     build:
-      context: ..
-      dockerfile: .container/Containerfile
+      context: .
+      dockerfile: Containerfile
     working_dir: $PWD
     volumes: $PWD:$PWD:Z
     command: sleep infinity
