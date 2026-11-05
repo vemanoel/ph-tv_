@@ -24,8 +24,6 @@ set -e
 printf 'deb [check-valid-until=no] https://snapshot.debian.org/archive/debian/20261103T113620Z trixie main\n' > /etc/apt/sources.list
 apt-get update --yes
 
-apt-get install --yes --no-install-recommends curl unzip
-
 apt-get install --yes --no-install-recommends android-tools-adb
 
 rm -rf /var/lib/apt/lists/*
